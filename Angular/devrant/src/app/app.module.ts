@@ -15,6 +15,9 @@ import { LoginPopupService } from './modules/login/login-page/login-page.service
 import { LoaderService } from './modules/global/loading-spinner/loader.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ControlMessagesComponent } from './control-messages.component';
+import { AuthService } from './auth.service';
+import {HttpClientModule } from '@angular/common/http'
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -34,11 +37,13 @@ import { ControlMessagesComponent } from './control-messages.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     LoginPopupService,
-    LoaderService
+    LoaderService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

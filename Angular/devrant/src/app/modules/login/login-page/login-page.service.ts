@@ -8,7 +8,6 @@ export class LoginPopupService {
     public status: Rx.BehaviorSubject<boolean> = new Rx.BehaviorSubject<boolean>(false);
  
     login(value: boolean) {
-        console.log("Text")
     this.status.next(value);
     }
 

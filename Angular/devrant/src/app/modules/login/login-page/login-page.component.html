@@ -14,23 +14,23 @@
                 <div class="form__description">
                     Vote and comment on others' rants. Post your own.
                 </div>
-                <form name="login" [formGroup]="userForm" (submit)="saveUser()">
+                <form name="login" [formGroup]="userForm" (submit)="saveUser($event)">
                     <div class="login">
 
-                        
+                        <div class="loginuser" *ngIf=hideInputField>
                         <input #userName formControlName="name" id="name" type="text" placeholder="USERNAME" autofocus />
                         <control-messages [control]="userForm.controls.name"></control-messages>
                         
-                        <input formControlName="email" id="email" type="password"  placeholder="PASSWORD"  />
-                        <control-messages [control]="userForm.controls.email"></control-messages>
-
+                        <input formControlName="password" id="password" type="password"  placeholder="PASSWORD"  />
+                        <control-messages [control]="userForm.controls.password"></control-messages>
+                    </div>
                         <app-loading-spinner></app-loading-spinner>
 
                         <!-- <div class="form__error">
                             Some fields are missing !
                         </div> -->
 
-                        <input type="submit" [disabled]="!userForm.valid" value="LET ME IN" (click)="onClickLetMeIn()" />
+                        <input type="submit" [disabled]="!hideInputField" value="LET ME IN" (click)="onClickLetMeIn()" />
                     </div>
                 </form>
             </div>
