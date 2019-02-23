@@ -14,19 +14,23 @@
                 <div class="form__description">
                     Vote and comment on others' rants. Post your own.
                 </div>
-                <form name="login">
+                <form name="login" [formGroup]="userForm" (submit)="saveUser()">
                     <div class="login">
 
-                        <input type="text" placeholder="USERNAME" autofocus/>
-                        <input type="password" placeholder="PASSWORD" />
+                        
+                        <input  formControlName="name" id="name" type="text" placeholder="USERNAME" autofocus/>
+                        <control-messages [control]="userForm.controls.name"></control-messages>
+                        
+                        <input formControlName="email" id="email" type="password"  placeholder="PASSWORD" />
+                        <control-messages [control]="userForm.controls.email"></control-messages>
 
                         <app-loading-spinner></app-loading-spinner>
 
-                        <div class="form__error">
+                        <!-- <div class="form__error">
                             Some fields are missing !
-                        </div>
+                        </div> -->
 
-                        <input type="submit" value="LET ME IN" (click)="onClickLetMeIn()" />
+                        <input type="submit" [disabled]="!userForm.valid" value="LET ME IN" (click)="onClickLetMeIn()" />
                     </div>
                 </form>
             </div>

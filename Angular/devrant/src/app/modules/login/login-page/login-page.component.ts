@@ -2,6 +2,8 @@
 import { LoginPopupService } from './login-page.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { LoaderService } from '../../global/loading-spinner/loader.service';
+import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { ValidationService } from 'src/app/validation.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,26 +12,38 @@ import { LoaderService } from '../../global/loading-spinner/loader.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private loginPopupService: LoginPopupService, private loaderService: LoaderService) { }
+  userForm: any;
+
+  constructor(private loginPopupService: LoginPopupService, private loaderService: LoaderService, private formBuilder: FormBuilder) { }
 
   login: boolean=false;
   logout:boolean=true;
   
   ngOnInit() {
-    console.log("gdussssssshdfshf");
     this.loginPopupService.status.subscribe((val: boolean) => {
       this.login = val;
       this.logout = !val;
       });
+
+      this.userForm = this.formBuilder.group({
+        'name': ['', ValidationService.userNameValidator],
+        'email': ['', [ ValidationService.passwordValidator]]
+      });
+  
+      console.log(this.userForm);
   }
 
+  saveUser() {
+    if (this.userForm.dirty && this.userForm.valid) {
+      alert(`Name: ${this.userForm.value.name} Email: ${this.userForm.value.email}`);
+    }
+  }
 
   onClickCancel(): void{
     this.login = false;
   }
 
   onClickLetMeIn(): void{
-    console.log("ggggggggggggrdrd")
     this.loaderService.showLoader(true);
   }
 

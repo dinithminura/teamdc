@@ -13,6 +13,8 @@ import { RantFooterComponent } from './modules/global/rant-footer/rant-footer.co
 import { LoadingSpinnerComponent } from './modules/global/loading-spinner/loading-spinner.component';
 import { LoginPopupService } from './modules/login/login-page/login-page.service';
 import { LoaderService } from './modules/global/loading-spinner/loader.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ControlMessagesComponent } from './control-messages.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,14 @@ import { LoaderService } from './modules/global/loading-spinner/loader.service';
     ArticalPageComponent,
     PostCommentComponent,
     AlertPopupComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ControlMessagesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     LoginPopupService,

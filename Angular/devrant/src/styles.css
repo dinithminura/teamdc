@@ -546,6 +546,12 @@ html {
   margin: 24px auto;
   flex-direction: column;
 }
+.loginuser {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
 .login input[type=text],
 .login input[type=password] {
   background: transparent;
