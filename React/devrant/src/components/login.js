@@ -1,6 +1,7 @@
 import React from "react";
 import Spinner from "./spinner";
 import Constant from "../config/constants";
+import WebServiceHelper from "../config/webservices";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class Login extends React.Component {
       if (this.state.username == "") {
         this.refs.username_input.focus();
         this.setState({
-          usernameError:Constant.username_error
+          usernameError: Constant.username_error
         });
       }
       if (this.state.password == "") {
@@ -50,6 +51,34 @@ export default class Login extends React.Component {
   handleSubmit = () => {
     this.setState({
       isLoading: true
+    });
+
+    WebServiceHelper.userActivate(
+      this.state.username,this.state.password
+    ).then(response => {
+      if (response.ok) {
+        this.setState({
+          isLoading:false,
+          showErrors: true,
+          webServiceError: ""
+        })
+        console.log("OKKKKKK");
+      } else {
+        if (response.error == "INVALID_CREDENTIALS") {
+          this.setState({
+            isLoading:false,
+            showErrors: true,
+            webServiceError: "Invalid username or password"
+          });  
+        } else {
+          this.setState({
+            isLoading:false,
+            showErrors: true,
+            webServiceError: "Something went wrong, Please try again"
+          });
+        }
+        
+      }
     });
   };
 
@@ -128,11 +157,12 @@ export default class Login extends React.Component {
                     <div>
                       <div class="form__error">{this.state.usernameError}</div>
                       <div class="form__error">{this.state.passwordError}</div>
+                      <div class="form__error">{this.state.webServiceError}</div>
                     </div>
                   )}
                   {this.state.isLoading && <Spinner />}
 
-                  <input type="submit" value="LET ME IN" />
+                  <input type="submit" value="LET ME IN" disabled={this.state.isLoading}/>
                 </div>
               </form>
             </div>

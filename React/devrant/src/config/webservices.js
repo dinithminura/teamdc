@@ -26,18 +26,22 @@ const webServiceHelper = {
       })
       .catch(e => e);
   },
-  sampleCall2: () => {
-    return fetch(Constant.sampleCall, {
-      method: "GET",
+  userActivate: (username, password) => {
+    return fetch(Constant.base_url + Constant.api_user_activate , {
+      method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
     })
       .then(ApiUtils.checkStatus)
       .then(response => response.json())
-      .then( responseJson => {
-        return true;
+      .then(responseJson => {
+        return responseJson;
       })
       .catch(e => e);
   }
