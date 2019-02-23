@@ -51,9 +51,6 @@ class App extends Component {
             ref="login_popup"
           />
 
-          {/* <!-- Start of Main Section --> */}
-          {/* <!-- ======================= --> */}
-
           {/* <!-- Start of Rant Details Page--> */}
           {/* <!-- ======================= --> */}
 
