@@ -5,9 +5,39 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false
+      isLoading: false,
+      username: "",
+      password: "",
+      showErrors: true
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  closePopup = () => {
+    this.setState({});
+  };
+
+  validate = () => {
+    return true;
+  };
+  handleSubmit = event => {
+    event.preventDefault();
+
+    if (this.validate) {
+      console.log("PASS");
+      this.setState({
+        isLoading: true
+      });
+    } else {
+      console.log("Failed");
+    }
+  };
+
+  handleBlur = () => {
+    this.setState({
+      showErrors: false
+    });
+  };
 
   render() {
     return (
@@ -30,18 +60,42 @@ export default class Login extends React.Component {
               <div class="form__description">
                 Vote and comment on others' rants. Post your own.
               </div>
-              <form name="login">
-                <div class="login">
-                  <input ref="username_input" type="text" placeholder="USERNAME" />
-                  <input type="password" placeholder="PASSWORD" />
+              {!this.state.isLoading && (
+                <form name="login" onSubmit={this.handleSubmit}>
+                  <div class="login">
+                    <input
+                      ref="username_input"
+                      type="text"
+                      placeholder="USERNAME"
+                      value={this.state.username}
+                      onChange={event => {
+                        this.setState({ username: event.target.value });
+                      }}
+                      onBlur={this.handleBlur}
+                    />
+                    <input
+                      ref="password_input"
+                      type="password"
+                      placeholder="PASSWORD"
+                      value={this.state.password}
+                      onChange={event => {
+                        this.setState({ password: event.target.value });
+                      }}
+                      onBlur={this.handleBlur}
+                    />
 
-                  {this.state.isLoading && <Spinner />}
+                    {this.state.isLoading && <Spinner />}
+                    {this.state.showErrors && (
+                      <div>
+                      <div class="form__error">Some fields are missing !</div>
+                      <div class="form__error">Some fields are missing !</div>
+                      </div>
+                    )}
 
-                  <div class="form__error">Some fields are missing !</div>
-
-                  <input type="submit" value="LET ME IN" />
-                </div>
-              </form>
+                    <input type="submit" value="LET ME IN" />
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>
