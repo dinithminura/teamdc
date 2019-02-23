@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/header";
-import Spinner from "./components/spinner";
 import Rant from "./components/rant";
 import RantList from "./components/rantlist";
 import Login from "./components/login";
@@ -12,44 +11,45 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.loginPopupOpen = this.loginPopupOpen.bind(this);
-    this.loginPopupClose = this.loginPopupClose.bind(this)
+    this.loginPopupClose = this.loginPopupClose.bind(this);
     this.state = {
       isLoading: false,
-    isShowLoginPopup:false
+      isShowLoginPopup: false
     };
   }
   componentDidMount() {
-    
     this.setState({
-      isLoading: false,
-      // isShowLoginPopup:true
+      isLoading: false
     });
   }
 
   loginPopupOpen = () => {
     this.setState({
-      isShowLoginPopup:true
-    })
-  }
+      isShowLoginPopup: true
+    });
+    this.refs.login_popup.refs.username_input.focus();
+  };
   loginPopupClose = () => {
     this.setState({
-      isShowLoginPopup:false
-    })
-  }
+      isShowLoginPopup: false
+    });
+  };
 
   render() {
     return (
       <Router>
         <div class="page">
           <Header handler={this.loginPopupOpen} />
-          {this.state.isLoading && <Spinner />}
-
           <Switch>
             <Route exact path="/" component={RantList} />
             <Route exact path="/rant/:id" component={Rant} />
           </Switch>
 
-          <Login isShowLogin={this.state.isShowLoginPopup} handler={this.loginPopupClose} />
+          <Login
+            isShowLogin={this.state.isShowLoginPopup}
+            handler={this.loginPopupClose}
+            ref="login_popup"
+          />
 
           {/* <!-- Start of Main Section --> */}
           {/* <!-- ======================= --> */}

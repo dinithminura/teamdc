@@ -1,18 +1,14 @@
 import React from "react";
+import Spinner from "./spinner";
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isShowLogin: this.props.isShowLogin
+      isLoading: false
     };
   }
 
-  closePopup = () => {
-    this.setState({
-      isShowLogin: false
-    });
-  };
   render() {
     return (
       <div className={this.props.isShowLogin ? "popup popup--open" : "popup"}>
@@ -36,12 +32,10 @@ export default class Login extends React.Component {
               </div>
               <form name="login">
                 <div class="login">
-                  <input type="text" placeholder="USERNAME" />
+                  <input ref="username_input" type="text" placeholder="USERNAME" />
                   <input type="password" placeholder="PASSWORD" />
 
-                  <div class="loader">
-                    <div class="spinner" />
-                  </div>
+                  {this.state.isLoading && <Spinner />}
 
                   <div class="form__error">Some fields are missing !</div>
 
