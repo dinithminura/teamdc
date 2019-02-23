@@ -19,7 +19,6 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    
     this.setState({
       isLoading: false,
       // isShowLoginPopup:true
@@ -29,7 +28,8 @@ class App extends Component {
   loginPopupOpen = () => {
     this.setState({
       isShowLoginPopup:true
-    })
+    });
+    this.refs.login_popup.refs.username_input.focus();
   }
   loginPopupClose = () => {
     this.setState({
@@ -40,6 +40,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        
         <div class="page">
           <Header handler={this.loginPopupOpen} />
           {this.state.isLoading && <Spinner />}
@@ -49,7 +50,7 @@ class App extends Component {
             <Route exact path="/rant/:id" component={Rant} />
           </Switch>
 
-          <Login isShowLogin={this.state.isShowLoginPopup} handler={this.loginPopupClose} />
+          <Login isShowLogin={this.state.isShowLoginPopup} handler={this.loginPopupClose} ref="login_popup" />
 
           {/* <!-- Start of Main Section --> */}
           {/* <!-- ======================= --> */}

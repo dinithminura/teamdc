@@ -8,11 +8,6 @@ export default class Login extends React.Component {
     };
   }
 
-  closePopup = () => {
-    this.setState({
-      isShowLogin: false
-    });
-  };
   render() {
     return (
       <div className={this.props.isShowLogin ? "popup popup--open" : "popup"}>
@@ -36,7 +31,7 @@ export default class Login extends React.Component {
               </div>
               <form name="login">
                 <div class="login">
-                  <input type="text" placeholder="USERNAME" />
+                  <input ref="username_input" type="text" placeholder="USERNAME" />
                   <input type="password" placeholder="PASSWORD" />
 
                   <div class="loader">
