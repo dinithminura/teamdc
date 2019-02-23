@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RantListItemComponent } from './modules/home/rant-list-item/rant-list-item.component';
-import { RantDetailsPageComponent } from './modules/home/rant-details-page/rant-details-page.component';
 import { LoginPageComponent } from './modules/login/login-page/login-page.component';
 import { ArticalPageComponent } from './modules/home/artical-page/artical-page.component';
 import { PostCommentComponent } from './modules/home/post-comment/post-comment.component';
@@ -19,7 +18,7 @@ import { LoadingSpinnerComponent } from './modules/global/loading-spinner/loadin
     RantHeaderComponent,
     RantFooterComponent,
     RantListItemComponent,
-    RantDetailsPageComponent,
+    routingComponent,
     LoginPageComponent,
     ArticalPageComponent,
     PostCommentComponent,
