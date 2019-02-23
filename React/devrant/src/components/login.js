@@ -6,7 +6,7 @@ export default class Login extends React.Component {
   }
   render() {
     return (
-      <div class="popup popup--open">
+      <div className={this.props.isShowLogin ? "popup popup--open" : "popup"}>
         <div class="popup__header">
           <div title="Close" class="close layout--center">
             X

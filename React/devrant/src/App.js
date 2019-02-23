@@ -29,7 +29,7 @@ class App extends Component {
             <Route exact path="/rant/:id" component={Rant} />
           </Switch>
 
-          <Login/>
+          <Login isShowLogin={true}/>
 
           {/* <!-- Start of Main Section --> */}
           {/* <!-- ======================= --> */}
