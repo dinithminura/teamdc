@@ -1,6 +1,6 @@
-<div class="popup popup--open">
+<div class="popup popup--open" *ngIf=login>
     <div class="popup__header">
-        <div title="Close" class="close layout--center">
+        <div title="Close" class="close layout--center" (click)="onClickCancel()">
             X
         </div>
     </div>

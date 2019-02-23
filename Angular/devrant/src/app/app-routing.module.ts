@@ -6,7 +6,6 @@ import { FeedListComponent } from './modules/home/feed-list/feed-list.component'
 const routes: Routes = [
   {path: 'rant/:id', component: RantDetailsPageComponent},
   {path: '', component: FeedListComponent}
-
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ import { AlertPopupComponent } from './modules/home/alert-popup/alert-popup.comp
 import { RantHeaderComponent } from './modules/global/rant-header/rant-header.component';
 import { RantFooterComponent } from './modules/global/rant-footer/rant-footer.component';
 import { LoadingSpinnerComponent } from './modules/global/loading-spinner/loading-spinner.component';
+import { LoginPopupService } from './modules/login/login-page/login-page.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { LoadingSpinnerComponent } from './modules/global/loading-spinner/loadin
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    LoginPopupService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

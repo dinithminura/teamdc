@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { LoginPopupService } from '../../login/login-page/login-page.service';
 
 @Component({
   selector: 'app-rant-header',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RantHeaderComponent implements OnInit {
 
-  constructor() { }
+  join: boolean = false;
+
+  constructor(private loginPopupService: LoginPopupService) { }
 
   ngOnInit() {
   }
-
+  
+  onClickJoin() {
+    this.loginPopupService.login(true);
+    
+  }
 }
