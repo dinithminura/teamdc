@@ -6,7 +6,8 @@ const constants = {
     // urls
     sampleCall:"sampleurl",
     base_url:"https://api.devrant.thusitha.site/v1/",
-    api_user_activate:"user.activate"
+    api_user_activate:"user.activate",
+    api_user_deactivate:"user.deactivate"
 
 }
 
