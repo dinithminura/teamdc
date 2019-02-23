@@ -1,5 +1,6 @@
 import React from "react";
 import Spinner from "./spinner";
+import Constant from "../config/constants";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class Login extends React.Component {
       if (this.state.username == "") {
         this.refs.username_input.focus();
         this.setState({
-          usernameError: "Username is required"
+          usernameError:Constant.username_error
         });
       }
       if (this.state.password == "") {
@@ -39,7 +40,7 @@ export default class Login extends React.Component {
         }
 
         this.setState({
-          passwordError: "Password is required"
+          passwordError: Constant.password_error
         });
       }
       return false;
