@@ -50,7 +50,6 @@ class App extends Component {
             handler={this.loginPopupClose}
             ref="login_popup"
           />
-
           {/* <!-- Start of Rant Details Page--> */}
           {/* <!-- ======================= --> */}
 
