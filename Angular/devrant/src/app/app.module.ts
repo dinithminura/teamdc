@@ -12,6 +12,7 @@ import { RantHeaderComponent } from './modules/global/rant-header/rant-header.co
 import { RantFooterComponent } from './modules/global/rant-footer/rant-footer.component';
 import { LoadingSpinnerComponent } from './modules/global/loading-spinner/loading-spinner.component';
 import { LoginPopupService } from './modules/login/login-page/login-page.service';
+import { LoaderService } from './modules/global/loading-spinner/loader.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoginPopupService } from './modules/login/login-page/login-page.service
     AppRoutingModule
   ],
   providers: [
-    LoginPopupService
+    LoginPopupService,
+    LoaderService
   ],
   bootstrap: [AppComponent]
 })

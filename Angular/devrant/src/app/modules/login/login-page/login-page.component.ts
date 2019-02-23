@@ -1,6 +1,7 @@
 
 import { LoginPopupService } from './login-page.service';
 import { Component, OnInit, Inject } from '@angular/core';
+import { LoaderService } from '../../global/loading-spinner/loader.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,24 +10,16 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-
-
-  constructor(private loginPopupService: LoginPopupService) { }
-
-  // @Output()notify: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(private loginPopupService: LoginPopupService, private loaderService: LoaderService) { }
 
   login: boolean=false;
   logout:boolean=true;
   
   ngOnInit() {
-    console.log("gduhdfshf");
+    console.log("gdussssssshdfshf");
     this.loginPopupService.status.subscribe((val: boolean) => {
       this.login = val;
       this.logout = !val;
-      console.log("stttttaststtst");
-      // if(this.login){
-      // // this.username=this.storage.getStorageData('username');
-      // }
       });
   }
 
@@ -34,12 +27,10 @@ export class LoginPageComponent implements OnInit {
   onClickCancel(): void{
     this.login = false;
   }
-  // private toggleText: string = "Show";
-    // private show: boolean = false;
 
-    // public onToggle(): void {
-    //     this.show = !this.show;
-    //     // this.toggleText = this.show ? "Hide" : "Show";
-    // }
+  onClickLetMeIn(): void{
+    console.log("ggggggggggggrdrd")
+    this.loaderService.showLoader(true);
+  }
 
 }
