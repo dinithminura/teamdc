@@ -1,14 +1,27 @@
 import React from "react";
 
 export default class Login extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      isShowLogin: this.props.isShowLogin
+    };
   }
+
+  closePopup = () => {
+    this.setState({
+      isShowLogin: false
+    });
+  };
   render() {
     return (
-      <div className={this.props.isShowLogin ? "popup popup--open" : "popup"}>
+      <div className={this.state.isShowLogin ? "popup popup--open" : "popup"}>
         <div class="popup__header">
-          <div title="Close" class="close layout--center">
+          <div
+            title="Close"
+            class="close layout--center"
+            onClick={this.closePopup}
+          >
             X
           </div>
         </div>
