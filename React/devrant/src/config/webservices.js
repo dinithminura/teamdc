@@ -1,4 +1,5 @@
 import Constant from "./constants";
+import StorageHelper from "./storage";
 
 var ApiUtils = {
   checkStatus: function(response) {
@@ -27,16 +28,32 @@ const webServiceHelper = {
       .catch(e => e);
   },
   userActivate: (username, password) => {
-    return fetch(Constant.base_url + Constant.api_user_activate , {
+    return fetch(Constant.base_url + Constant.api_user_activate, {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username: username,
         password: password
       })
+    })
+      .then(ApiUtils.checkStatus)
+      .then(response => response.json())
+      .then(responseJson => {
+        return responseJson;
+      })
+      .catch(e => e);
+  },
+  userDeactivate: () => {
+    return fetch(Constant.base_url + Constant.api_user_deactivate, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-Token": StorageHelper.getUserToken()
+      }
     })
       .then(ApiUtils.checkStatus)
       .then(response => response.json())

@@ -6,11 +6,13 @@ import Header from "./components/header";
 import Rant from "./components/rant";
 import RantList from "./components/rantlist";
 import Login from "./components/login";
+import StorageHelper from "./config/storage";
+import WebServiceHelper from "./config/webservices";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.loginPopupOpen = this.loginPopupOpen.bind(this);
+    this.loginHandler = this.loginHandler.bind(this);
     this.loginPopupClose = this.loginPopupClose.bind(this);
     this.state = {
       isLoading: false,
@@ -23,11 +25,20 @@ class App extends Component {
     });
   }
 
-  loginPopupOpen = () => {
-    this.setState({
-      isShowLoginPopup: true
-    });
-    this.refs.login_popup.refs.username_input.focus();
+  loginHandler = () => {
+    if (StorageHelper.getLoginState()) {
+      WebServiceHelper.userDeactivate().then(response => {
+        if (response.ok) {
+          StorageHelper.clearAll();
+          this.setState(this.state);
+        }
+      });
+    } else {
+      this.setState({
+        isShowLoginPopup: true
+      });
+      this.refs.login_popup.refs.username_input.focus();
+    }
   };
   loginPopupClose = () => {
     this.setState({
@@ -39,7 +50,7 @@ class App extends Component {
     return (
       <Router>
         <div class="page">
-          <Header handler={this.loginPopupOpen} />
+          <Header handler={this.loginHandler} />
           <Switch>
             <Route exact path="/" component={RantList} />
             <Route exact path="/rant/:id" component={Rant} />

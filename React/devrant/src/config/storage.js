@@ -20,7 +20,11 @@ const localStorageHelper = {
     getLoginState: () => {
         var isLogin = localStorage.getItem('isLogin');
         return isLogin;
-    }
+    },
+    clearAll: () => {
+        localStorage.clear();
+    },
+    
 }
 
 
