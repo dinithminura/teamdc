@@ -9,19 +9,39 @@ import RantList from "./components/rantlist";
 import Login from "./components/login";
 
 class App extends Component {
-  state = {
-    isLoading: false
-  };
+  constructor(props) {
+    super(props);
+    this.loginPopupOpen = this.loginPopupOpen.bind(this);
+    this.loginPopupClose = this.loginPopupClose.bind(this)
+    this.state = {
+      isLoading: false,
+    isShowLoginPopup:false
+    };
+  }
   componentDidMount() {
+    
     this.setState({
-      isLoading: false
+      isLoading: false,
+      // isShowLoginPopup:true
     });
   }
+
+  loginPopupOpen = () => {
+    this.setState({
+      isShowLoginPopup:true
+    })
+  }
+  loginPopupClose = () => {
+    this.setState({
+      isShowLoginPopup:false
+    })
+  }
+
   render() {
     return (
       <Router>
         <div class="page">
-          <Header />
+          <Header handler={this.loginPopupOpen} />
           {this.state.isLoading && <Spinner />}
 
           <Switch>
@@ -29,7 +49,7 @@ class App extends Component {
             <Route exact path="/rant/:id" component={Rant} />
           </Switch>
 
-          <Login isShowLogin={true}/>
+          <Login isShowLogin={this.state.isShowLoginPopup} handler={this.loginPopupClose} />
 
           {/* <!-- Start of Main Section --> */}
           {/* <!-- ======================= --> */}

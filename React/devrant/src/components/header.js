@@ -26,7 +26,7 @@ export default class Header extends React.Component {
             <div class="profile__name">Elon</div>
           </div> */}
 
-          <div class="join">
+          <div class="join" onClick={this.props.handler}>
             <span>Join</span>
             {/* <span>Sign Out</span> */}
           </div>

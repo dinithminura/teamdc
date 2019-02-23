@@ -15,12 +15,12 @@ export default class Login extends React.Component {
   };
   render() {
     return (
-      <div className={this.state.isShowLogin ? "popup popup--open" : "popup"}>
+      <div className={this.props.isShowLogin ? "popup popup--open" : "popup"}>
         <div class="popup__header">
           <div
             title="Close"
             class="close layout--center"
-            onClick={this.closePopup}
+            onClick={this.props.handler}
           >
             X
           </div>
