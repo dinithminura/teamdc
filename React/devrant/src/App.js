@@ -1,107 +1,40 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/header";
 import Spinner from "./components/spinner";
+import Rant from "./components/rant";
+import RantList from "./components/rantlist";
 
 class App extends Component {
-
   state = {
-    isLoading:false
-  }
-  componentDidMount(){
+    isLoading: false
+  };
+  componentDidMount() {
     this.setState({
-      isLoading:true
-    })
+      isLoading: false
+    });
   }
   render() {
     return (
-      <div class="page">
-        <Header />
+      <Router>
+        <div class="page">
+          <Header />
+          {this.state.isLoading && <Spinner />}
 
-        {this.state.isLoading && <Spinner/>}
-        
-        {/* <!-- Start of Main Section --> */}
-        {/* <!-- ======================= --> */}
+          <Switch>
+            <Route exact path="/" component={RantList} />
+            <Route exact path="/rant/:id" component={Rant} />
+          </Switch>
 
-        <section class="main layout--center">
-          <div class="main__content layout--wrapped">
-            {/* <!-- Start of Loader -->                 */}
-            {/* <!-- ======================= --> */}
+          {/* <!-- Start of Main Section --> */}
+          {/* <!-- ======================= --> */}
 
-            {/* <!-- <div class="loader">
-          <div class="spinner"></div>
-        </div> --> */}
+          {/* <!-- Start of Rant Details Page--> */}
+          {/* <!-- ======================= --> */}
 
-            {/* <!-- ======================= --> */}
-            {/* <!-- End of loader --> */}
-
-            {/* <!-- Start of Rant List Page --> */}
-            {/* <!-- ======================= --> */}
-
-            <div class="post-list">
-              <article class="post">
-                <div class="post__inner">
-                  <div class="score">
-                    <div class="score__up layout--center">++</div>
-                    <div class="score__board layout--center">100</div>
-                    <div class="score__down layout--center">--</div>
-                  </div>
-                  <div class="post__body">Hello World... </div>
-                </div>
-                <div class="post__footer">
-                  <div class="post__time">2m ago</div>
-                  <div class="post__comments">
-                    <svg class="icon" viewBox="0 0 31 32">
-                      <path
-                        d="M24.732 24.371v7.629l-7.267-7.267h-8.808c-4.781 
-                            0-8.657-3.875-8.657-8.657v-7.42c0-4.781 3.876-8.657 
-                            8.657-8.657h13.604c4.781 0 8.657 3.875 8.657 8.657v7.42c0 
-                            3.922-2.61 7.23-6.186 8.294z"
-                      />
-                    </svg>
-                    23
-                  </div>
-                </div>
-              </article>
-
-              <article class="post">
-                <div class="post__inner">
-                  <div class="score">
-                    <div class="score__up layout--center">++</div>
-                    <div class="score__board layout--center">100</div>
-                    <div class="score__down layout--center">--</div>
-                  </div>
-                  <div class="post__body">Hello World... </div>
-                </div>
-                <div class="post__footer">
-                  <div class="post__time">2m ago</div>
-                  <div class="post__comments">
-                    <svg class="icon" viewBox="0 0 31 32">
-                      <path
-                        d="M24.732 24.371v7.629l-7.267-7.267h-8.808c-4.781 
-                          0-8.657-3.875-8.657-8.657v-7.42c0-4.781 3.876-8.657 
-                          8.657-8.657h13.604c4.781 0 8.657 3.875 8.657 8.657v7.42c0 
-                          3.922-2.61 7.23-6.186 8.294z"
-                      />
-                    </svg>
-                    23
-                  </div>
-                </div>
-              </article>
-
-              <div class="rant__add" title="Add Rant">
-                +
-              </div>
-            </div>
-
-            {/* <!-- ======================= --> */}
-            {/* <!-- End of Rant List Page --> */}
-
-            {/* <!-- Start of Rant Details Page--> */}
-            {/* <!-- ======================= --> */}
-
-            {/* <!-- <div class="rant-details layout--center">
+          {/* <!-- <div class="rant-details layout--center">
 
             <section class="post-hero">
                 <div class="post-hero__inner">
@@ -174,14 +107,10 @@ class App extends Component {
 
         </div> --> */}
 
-            {/* <!-- ======================= --> */}
-            {/* <!-- End of Rant Details Page--> */}
-          </div>
-        </section>
-
-        {/* <!-- ======================= --> */}
-        {/* <!-- End of Main Section --> */}
-      </div>
+          {/* <!-- ======================= --> */}
+          {/* <!-- End of Main Section --> */}
+        </div>
+      </Router>
     );
   }
 }
