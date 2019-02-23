@@ -5,11 +5,22 @@ import Header from "./components/header";
 import Spinner from "./components/spinner";
 
 class App extends Component {
+
+  state = {
+    isLoading:false
+  }
+  componentDidMount(){
+    this.setState({
+      isLoading:true
+    })
+  }
   render() {
     return (
       <div class="page">
         <Header />
-        <Spinner/>
+
+        {this.state.isLoading && <Spinner/>}
+        
         {/* <!-- Start of Main Section --> */}
         {/* <!-- ======================= --> */}
 
