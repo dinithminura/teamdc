@@ -2,6 +2,7 @@ import React from "react";
 import Spinner from "./spinner";
 import Constant from "../config/constants";
 import WebServiceHelper from "../config/webservices";
+import StorageHelper from "../config/storage";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -62,7 +63,12 @@ export default class Login extends React.Component {
           showErrors: true,
           webServiceError: ""
         })
-        console.log("OKKKKKK");
+
+        StorageHelper.setUsername(response.username);
+        StorageHelper.setUserToken(response.token);
+        StorageHelper.setLoginState();
+        this.props.handler();
+
       } else {
         if (response.error == "INVALID_CREDENTIALS") {
           this.setState({
