@@ -5,6 +5,8 @@ import { LoaderService } from '../../global/loading-spinner/loader.service';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/validation.service';
 import { AuthService } from 'src/app/auth.service';
+import { AppConstants } from '../../service/constants';
+import { ErrorService } from '../../service/api.error';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +21,8 @@ export class LoginPageComponent implements OnInit {
   constructor(private loginPopupService: LoginPopupService, 
     private loaderService: LoaderService, 
     private formBuilder: FormBuilder, 
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private errorService: ErrorService) { }
 
   login: boolean=false;
   logout:boolean=true;
@@ -55,7 +58,7 @@ export class LoginPageComponent implements OnInit {
         if(data.ok){
 
         } else {
-          // window.alert(data.error);
+          window.alert(this.errorService.getErrorMessage( data.error));
         }
       })
     }

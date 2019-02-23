@@ -18,6 +18,7 @@ import { ControlMessagesComponent } from './control-messages.component';
 import { AuthService } from './auth.service';
 import {HttpClientModule } from '@angular/common/http'
 import { from } from 'rxjs';
+import { ErrorService } from './modules/service/api.error';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { from } from 'rxjs';
   providers: [
     LoginPopupService,
     LoaderService,
-    AuthService
+    AuthService,
+    ErrorService
   ],
   bootstrap: [AppComponent]
 })

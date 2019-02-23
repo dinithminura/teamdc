@@ -1,5 +1,5 @@
 export class AppConstants {
-    public static API_ENDPOINT='https://api.devrant.thusitha.site/v1/';
+    public static API_ENDPOINT = 'https://api.devrant.thusitha.site/v1/';
 
     public static API_USER_ACTIVATE = "user.activate";
 
@@ -35,13 +35,15 @@ export class AppConstants {
 
     public static MISSING_DIRECTION = "Vote direction is not available. Available values are up, down and reset";
 
-    public static 	AUTHOR_CANNOT_VOTE = "Post author can not vote on his/her post";
+    public static AUTHOR_CANNOT_VOTE = "Post author can not vote on his/her post";
 
-    public static 	MISSING_COMMENT = "Comment text is missing in the request body";
+    public static MISSING_COMMENT = "Comment text is missing in the request body";
 
-    public static 	MISSING_COMMENT_ID = "Comment ID is not found in the request body";
+    public static MISSING_COMMENT_ID = "Comment ID is not found in the request body";
 
-    public static 	MISSING_POST_ID = "Post ID is not found in the request body";
+    public static MISSING_POST_ID = "Post ID is not found in the request body";
+
+   
 
 
- }
+}
