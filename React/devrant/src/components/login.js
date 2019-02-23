@@ -8,34 +8,66 @@ export default class Login extends React.Component {
       isLoading: false,
       username: "",
       password: "",
-      showErrors: true
+      showErrors: true,
+      usernameError: "",
+      passwordError: "",
+      focus: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  closePopup = () => {
-    this.setState({});
-  };
-
-  validate = () => {
-    return true;
-  };
-  handleSubmit = event => {
+  validate = event => {
+    this.setState({
+      showErrors: true,
+      usernameError: "",
+      passwordError: ""
+    });
     event.preventDefault();
 
-    if (this.validate) {
-      console.log("PASS");
-      this.setState({
-        isLoading: true
-      });
+    if (this.state.username != "" && this.state.password != "") {
+      this.handleSubmit();
     } else {
-      console.log("Failed");
+      if (this.state.username == "") {
+        this.refs.username_input.focus();
+        this.setState({
+          usernameError: "Username is required"
+        });
+      }
+      if (this.state.password == "") {
+        if (this.state.username != "") {
+          this.refs.password_input.focus();
+        }
+
+        this.setState({
+          passwordError: "Password is required"
+        });
+      }
+      return false;
     }
   };
 
-  handleBlur = () => {
+  handleSubmit = () => {
     this.setState({
-      showErrors: false
+      isLoading: true
+    });
+  };
+
+  handleClick = () => {
+    this.setState({
+      showErrors: false,
+      usernameError: "",
+      passwordError: ""
+    });
+  };
+
+  resetInputValues = () => {
+    this.setState({
+      isLoading: false,
+      showErrors: false,
+      usernameError: "",
+      passwordError: "",
+      username: "",
+      password: ""
     });
   };
 
@@ -46,7 +78,10 @@ export default class Login extends React.Component {
           <div
             title="Close"
             class="close layout--center"
-            onClick={this.props.handler}
+            onClick={event => {
+              this.props.handler();
+              this.resetInputValues();
+            }}
           >
             X
           </div>
@@ -60,9 +95,10 @@ export default class Login extends React.Component {
               <div class="form__description">
                 Vote and comment on others' rants. Post your own.
               </div>
-              {!this.state.isLoading && (
-                <form name="login" onSubmit={this.handleSubmit}>
-                  <div class="login">
+
+              <form name="login" onSubmit={this.validate}>
+                <div class="login">
+                  {!this.state.isLoading && (
                     <input
                       ref="username_input"
                       type="text"
@@ -71,8 +107,10 @@ export default class Login extends React.Component {
                       onChange={event => {
                         this.setState({ username: event.target.value });
                       }}
-                      onBlur={this.handleBlur}
+                      onClick={this.handleClick}
                     />
+                  )}
+                  {!this.state.isLoading && (
                     <input
                       ref="password_input"
                       type="password"
@@ -81,21 +119,21 @@ export default class Login extends React.Component {
                       onChange={event => {
                         this.setState({ password: event.target.value });
                       }}
-                      onBlur={this.handleBlur}
+                      onClick={this.handleClick}
                     />
+                  )}
 
-                    {this.state.isLoading && <Spinner />}
-                    {this.state.showErrors && (
-                      <div>
-                      <div class="form__error">Some fields are missing !</div>
-                      <div class="form__error">Some fields are missing !</div>
-                      </div>
-                    )}
+                  {this.state.showErrors && !this.state.isLoading && (
+                    <div>
+                      <div class="form__error">{this.state.usernameError}</div>
+                      <div class="form__error">{this.state.passwordError}</div>
+                    </div>
+                  )}
+                  {this.state.isLoading && <Spinner />}
 
-                    <input type="submit" value="LET ME IN" />
-                  </div>
-                </form>
-              )}
+                  <input type="submit" value="LET ME IN" />
+                </div>
+              </form>
             </div>
           </div>
         </div>
