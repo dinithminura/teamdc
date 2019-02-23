@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { LoaderService } from './loader.service';
+import { LoaderState } from './loader';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-loading-spinner',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingSpinnerComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  show = false;
+private subscription: Subscription;
+constructor(
+        private loaderService: LoaderService
+    ) { }
+ngOnInit() { 
+        this.subscription = this.loaderService.loaderState
+            .subscribe((state: LoaderState) => {
+                this.show = state.show;
+            });
+    }
+ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 }
