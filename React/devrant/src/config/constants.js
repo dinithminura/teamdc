@@ -4,7 +4,9 @@ const constants = {
     password_error:"Password is required",
 
     // urls
-    sampleCall:"sampleurl"
+    sampleCall:"sampleurl",
+    base_url:"https://api.devrant.thusitha.site/v1/",
+    api_user_activate:"user.activate"
 
 }
 

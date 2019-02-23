@@ -1,6 +1,7 @@
 import React from "react";
 import Spinner from "./spinner";
 import Constant from "../config/constants";
+import WebServiceHelper from "../config/webservices";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class Login extends React.Component {
       if (this.state.username == "") {
         this.refs.username_input.focus();
         this.setState({
-          usernameError:Constant.username_error
+          usernameError: Constant.username_error
         });
       }
       if (this.state.password == "") {
@@ -50,6 +51,16 @@ export default class Login extends React.Component {
   handleSubmit = () => {
     this.setState({
       isLoading: true
+    });
+
+    WebServiceHelper.userActivate(
+      this.state.username,this.state.password
+    ).then(response => {
+      if (response.ok) {
+        console.log("OKKKKKK");
+      } else {
+        console.log("OOOOOOO");
+      }
     });
   };
 
@@ -132,7 +143,7 @@ export default class Login extends React.Component {
                   )}
                   {this.state.isLoading && <Spinner />}
 
-                  <input type="submit" value="LET ME IN" />
+                  <input type="submit" value="LET ME IN" disabled={this.state.isLoading}/>
                 </div>
               </form>
             </div>
