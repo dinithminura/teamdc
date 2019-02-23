@@ -6,6 +6,7 @@ import Header from "./components/header";
 import Spinner from "./components/spinner";
 import Rant from "./components/rant";
 import RantList from "./components/rantlist";
+import Login from "./components/login";
 
 class App extends Component {
   state = {
@@ -27,6 +28,8 @@ class App extends Component {
             <Route exact path="/" component={RantList} />
             <Route exact path="/rant/:id" component={Rant} />
           </Switch>
+
+          <Login/>
 
           {/* <!-- Start of Main Section --> */}
           {/* <!-- ======================= --> */}
