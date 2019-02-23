@@ -1,6 +1,6 @@
 
 import { LoginPopupService } from './login-page.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { LoaderService } from '../../global/loading-spinner/loader.service';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/validation.service';
@@ -13,6 +13,7 @@ import { ValidationService } from 'src/app/validation.service';
 export class LoginPageComponent implements OnInit {
 
   userForm: any;
+  @ViewChild('userName') userName: ElementRef;
 
   constructor(private loginPopupService: LoginPopupService, private loaderService: LoaderService, private formBuilder: FormBuilder) { }
 
@@ -25,6 +26,7 @@ export class LoginPageComponent implements OnInit {
       this.logout = !val;
       });
 
+  
       this.userForm = this.formBuilder.group({
         'name': ['', ValidationService.userNameValidator],
         'email': ['', [ ValidationService.passwordValidator]]
@@ -40,6 +42,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   onClickCancel(): void{
+    this.userForm.reset();
+    // this.userName.nativeElement.focus();
+  
     this.login = false;
   }
 

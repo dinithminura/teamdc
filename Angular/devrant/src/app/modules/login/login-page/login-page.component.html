@@ -18,10 +18,10 @@
                     <div class="login">
 
                         
-                        <input  formControlName="name" id="name" type="text" placeholder="USERNAME" autofocus/>
+                        <input #userName formControlName="name" id="name" type="text" placeholder="USERNAME" autofocus />
                         <control-messages [control]="userForm.controls.name"></control-messages>
                         
-                        <input formControlName="email" id="email" type="password"  placeholder="PASSWORD" />
+                        <input formControlName="email" id="email" type="password"  placeholder="PASSWORD"  />
                         <control-messages [control]="userForm.controls.email"></control-messages>
 
                         <app-loading-spinner></app-loading-spinner>
