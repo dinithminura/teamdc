@@ -15,11 +15,11 @@ import { LoginPopupService } from './modules/login/login-page/login-page.service
 import { LoaderService } from './modules/global/loading-spinner/loader.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ControlMessagesComponent } from './control-messages.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './modules/login/auth.service';
 import {HttpClientModule } from '@angular/common/http'
 import { from } from 'rxjs';
 import { ErrorService } from './modules/service/api.error';
-import {AuthGuard} from "./auth.guard"
+import {AuthGuard} from "./modules/login/auth.guard"
 import { HeaderPageService } from './header-page.service';
 
 @NgModule({

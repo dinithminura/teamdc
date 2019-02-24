@@ -4,7 +4,7 @@ import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core'
 import { LoaderService } from '../../global/loading-spinner/loader.service';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/validation.service';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/modules/login/auth.service';
 import { AppConstants } from '../../service/constants';
 import { ErrorService } from '../../service/api.error';
 import { Route, Router } from '@angular/router';
@@ -61,7 +61,7 @@ export class LoginPageComponent implements OnInit {
         this.loaderService.showLoader(false);
         
         if(data.ok){
-            this.router.navigate(['rant', 56]);
+            this.router.navigate(['']);
             this.authService.setLoggedIn(true, data.token);
             this.headerService.changeHeader("Sing Out");
         } else {

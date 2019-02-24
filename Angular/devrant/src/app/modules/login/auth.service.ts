@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  HttpClient } from '@angular/common/http';
-import { AppConstants } from './modules/service/constants';
+import { AppConstants } from '../service/constants';
 
 interface myData{
   ok: boolean,
@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   get myToken(){
-    return JSON.parse(localStorage.getItem('loggedInStustus') || this.accessToken.toString());
+    return localStorage.getItem('accessToken') || this.accessToken.toString();
   }
 
   getUserDetails(username, password){
@@ -39,6 +39,7 @@ export class AuthService {
       username,
       password
     });
+
     
   }
 }
