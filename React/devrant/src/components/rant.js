@@ -9,9 +9,13 @@ export default class Rant extends React.Component {
       <article class="post">
         <div class="post__inner">
           <div class="score">
-            <div class={this.props.myvote == 1? "score__up layout--center checked" : "score__up layout--center" }>++</div>
+            <div class={this.props.myvote == 1? "score__up layout--center checked" : "score__up layout--center"} onClick={() => {
+              this.props.voteUpHandler()
+            }} >++</div>
             <div class="score__board layout--center">{this.props.votes}</div>
-            <div class={this.props.myvote == -1? "score__down layout--center checked": "score__down layout--center"}>--</div>
+            <div class={this.props.myvote == -1? "score__down layout--center checked": "score__down layout--center"} onClick={() => {
+              this.props.voteDownHandler()
+            }}>--</div>
           </div>
           <div class="post__body">{this.props.content}</div>
         </div>

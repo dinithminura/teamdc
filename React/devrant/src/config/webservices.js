@@ -90,6 +90,26 @@ const webServiceHelper = {
     }
     
   },
+  postVote: (id,direction) => {
+    return fetch(Constant.base_url + Constant.api_post_vote, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-Token": StorageHelper.getUserToken()
+      },
+      body: JSON.stringify({
+        postId: id,
+        direction: direction
+      })
+    })
+      .then(ApiUtils.checkStatus)
+      .then(response => response.json())
+      .then(responseJson => {
+        return responseJson;
+      })
+      .catch(e => e);
+  },
 };
 
 export default webServiceHelper;
