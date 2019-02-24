@@ -18,15 +18,7 @@ var ApiUtils = {
 };
 
 const webServiceHelper = {
-  sampleCall: () => {
-    return fetch(Constant.sampleCall)
-      .then(ApiUtils.checkStatus)
-      .then(response => response.json())
-      .then(responseJson => {
-        return responseJson;
-      })
-      .catch(e => e);
-  },
+  
   userActivate: (username, password) => {
     return fetch(Constant.base_url + Constant.api_user_activate, {
       method: "POST",
@@ -61,7 +53,43 @@ const webServiceHelper = {
         return responseJson;
       })
       .catch(e => e);
-  }
+  },
+
+  getRantList: (isLogin) => {
+    if (isLogin) {
+      console.log("call get list with login");
+      return fetch(Constant.base_url + Constant.api_get_rantlist, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "X-Token": StorageHelper.getUserToken()
+        }
+      })
+        .then(ApiUtils.checkStatus)
+        .then(response => response.json())
+        .then(responseJson => {
+          return responseJson;
+        })
+        .catch(e => e);
+    } else {
+      console.log("call get list without");
+      return fetch(Constant.base_url + Constant.api_get_rantlist, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      })
+        .then(ApiUtils.checkStatus)
+        .then(response => response.json())
+        .then(responseJson => {
+          return responseJson;
+        })
+        .catch(e => e);
+    }
+    
+  },
 };
 
 export default webServiceHelper;

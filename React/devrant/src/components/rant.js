@@ -9,14 +9,14 @@ export default class Rant extends React.Component {
       <article class="post">
         <div class="post__inner">
           <div class="score">
-            <div class="score__up layout--center">++</div>
-            <div class="score__board layout--center">100</div>
-            <div class="score__down layout--center">--</div>
+            <div class={this.props.myvote == 1? "score__up layout--center checked" : "score__up layout--center" }>++</div>
+            <div class="score__board layout--center">{this.props.votes}</div>
+            <div class={this.props.myvote == -1? "score__down layout--center checked": "score__down layout--center"}>--</div>
           </div>
-          <div class="post__body">Hello World... </div>
+          <div class="post__body">{this.props.content}</div>
         </div>
         <div class="post__footer">
-          <div class="post__time">2m ago</div>
+          <div class="post__time">{this.props.displaytime}</div>
           <div class="post__comments">
             <svg class="icon" viewBox="0 0 31 32">
               <path
@@ -26,7 +26,7 @@ export default class Rant extends React.Component {
                 3.922-2.61 7.23-6.186 8.294z"
               />
             </svg>
-            23
+            {this.props.comments}
           </div>
         </div>
       </article>
