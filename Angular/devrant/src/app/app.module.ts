@@ -19,6 +19,8 @@ import { AuthService } from './auth.service';
 import {HttpClientModule } from '@angular/common/http'
 import { from } from 'rxjs';
 import { ErrorService } from './modules/service/api.error';
+import {AuthGuard} from "./auth.guard"
+import { HeaderPageService } from './header-page.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ErrorService } from './modules/service/api.error';
     LoginPopupService,
     LoaderService,
     AuthService,
-    ErrorService
+    ErrorService,
+    AuthGuard,
+    HeaderPageService
   ],
   bootstrap: [AppComponent]
 })

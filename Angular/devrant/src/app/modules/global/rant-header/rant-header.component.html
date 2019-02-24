@@ -5,17 +5,17 @@
         </div>
 
         <!-- User Profile -->
-        <!-- <div class="profile layout--center">
+        <div class="profile layout--center" *ngIf=!join>
             <div class="profile__picture">
                 <svg height="36" width="36">
                     <circle cx="18" cy="18" r="18" fill="#5c5f6f"></circle>
                 </svg>
             </div>
             <div class="profile__name">Elon</div>
-        </div> -->
+        </div>
 
         <div class="join">
-            <span (click)="onClickJoin()">Join</span>
+            <span (click)="onClickJoin()">{{JoinOrSingOut}}</span>
             <!-- <span>Sign Out</span> -->
         </div>
     </div>

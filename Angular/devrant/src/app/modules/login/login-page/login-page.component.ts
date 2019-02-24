@@ -7,6 +7,8 @@ import { ValidationService } from 'src/app/validation.service';
 import { AuthService } from 'src/app/auth.service';
 import { AppConstants } from '../../service/constants';
 import { ErrorService } from '../../service/api.error';
+import { Route, Router } from '@angular/router';
+import { HeaderPageService } from 'src/app/header-page.service';
 
 @Component({
   selector: 'app-login-page',
@@ -22,7 +24,9 @@ export class LoginPageComponent implements OnInit {
     private loaderService: LoaderService, 
     private formBuilder: FormBuilder, 
     private authService: AuthService,
-    private errorService: ErrorService) { }
+    private errorService: ErrorService,
+    private headerService: HeaderPageService,
+    private router: Router) { }
 
   login: boolean=false;
   logout:boolean=true;
@@ -55,10 +59,13 @@ export class LoginPageComponent implements OnInit {
       console.log(userName, password);
       this.authService.getUserDetails(userName, password).subscribe(data => {
         this.loaderService.showLoader(false);
+        
         if(data.ok){
-
+            this.router.navigate(['rant', 56]);
+            this.authService.setLoggedIn(true, data.token);
+            this.headerService.changeHeader("Sing Out");
         } else {
-          window.alert(this.errorService.getErrorMessage( data.error));
+          // window.alert(this.errorService.getErrorMessage( data.error));
         }
       })
     }
