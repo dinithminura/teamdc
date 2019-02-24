@@ -1,9 +1,13 @@
 import React from "react";
 import Rant from "./rant";
+import Spinner from "./spinner";
 
 export default class RantList extends React.Component {
   constructor() {
     super();
+    this.state = {
+      isLoading: true,
+    };
   }
   render() {
     return (
@@ -17,9 +21,11 @@ export default class RantList extends React.Component {
             <div class="rant__add" title="Add Rant">
               +
             </div>
+            {this.state.isLoading && <Spinner />}
           </div>
         </div>
       </section>
+      
     );
   }
 }
