@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/header";
-import Rant from "./components/rant";
+import Rant from "./components/rantdetail";
 import RantList from "./components/rantlist";
 import Login from "./components/login";
 import StorageHelper from "./config/storage";
