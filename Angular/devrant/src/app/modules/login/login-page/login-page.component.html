@@ -1,0 +1,39 @@
+<div class="popup popup--open" *ngIf=login>
+    <div class="popup__header">
+        <div title="Close" class="close layout--center" (click)="onClickCancel()">
+            X
+        </div>
+    </div>
+    <div class="popup__body layout--center">
+        <div class="popup__body-inner">
+
+            <div class="form">
+                <div class="form__title">
+                    JOIN <span class="highlight">#</span>DEVRANT
+                </div>
+                <div class="form__description">
+                    Vote and comment on others' rants. Post your own.
+                </div>
+                <form name="login" [formGroup]="userForm" (submit)="saveUser($event)">
+                    <div class="login">
+
+                        <div class="loginuser" *ngIf=hideInputField>
+                        <input #userName formControlName="name" id="name" type="text" placeholder="USERNAME" autofocus />
+                        <control-messages [control]="userForm.controls.name"></control-messages>
+                        
+                        <input formControlName="password" id="password" type="password"  placeholder="PASSWORD"  />
+                        <control-messages [control]="userForm.controls.password"></control-messages>
+                    </div>
+                        <app-loading-spinner></app-loading-spinner>
+
+                        <!-- <div class="form__error">
+                            Some fields are missing !
+                        </div> -->
+
+                        <input type="submit" [disabled]="!hideInputField" value="LET ME IN" (click)="onClickLetMeIn()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
