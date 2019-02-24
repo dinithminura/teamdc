@@ -7,8 +7,10 @@ import * as Rx from 'rxjs/BehaviorSubject';
 export class HeaderPageService {
 
   public status: Rx.BehaviorSubject<string> = new Rx.BehaviorSubject<string>("Join");
+  public isJoin: Rx.BehaviorSubject<boolean> = new Rx.BehaviorSubject<boolean>(true);
  
-    changeHeader(value: string) {
+    changeHeader(value: string, isJoin:boolean) {
     this.status.next(value);
+    this.isJoin.next(isJoin);
     }
 }

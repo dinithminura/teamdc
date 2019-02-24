@@ -20,7 +20,7 @@ export class AuthService {
 
   setLoggedIn(valueStatus: boolean, token:string){
     this.loggedInStatus = valueStatus;
-    localStorage.setItem('loggedInStustus', 'true');
+    localStorage.setItem('loggedInStustus', valueStatus.toString());
 
     this.accessToken = token;
     localStorage.setItem('accessToken', token.toString());

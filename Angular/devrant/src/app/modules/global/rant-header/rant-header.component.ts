@@ -4,6 +4,7 @@ import { HeaderPageService } from 'src/app/header-page.service';
 import { AuthService } from '../../login/auth.service';
 import { LogOutService } from 'src/app/log-out.service';
 import { Router } from '@angular/router';
+import { join } from 'path';
 
 @Component({
   selector: 'app-rant-header',
@@ -26,28 +27,29 @@ export class RantHeaderComponent implements OnInit {
       this.JoinOrSingOut = val;
     });
 
+    this.headerService.isJoin.subscribe((val: boolean) => {
+      this.join = val;
+    });
+
     if (this.auth.isLoggedIn) {
-      this.JoinOrSingOut = "Sing Out";
-      this.join = false;
+     this.headerService.changeHeader("Sing Out", false);
     }
     else {
-      this.JoinOrSingOut = "Join";
-      this.join = true;
+      this.headerService.changeHeader("Join", true);
     }
   }
 
   onClickJoin() {
     if (this.join) this.loginPopupService.login(true);
-    else {
-      this.logout.singOutUser().subscribe(data => {
+    else {this.logout.singOutUser().subscribe(data => {
       if (data.ok) {
         this.auth.setLoggedIn(false, "");
-        this.headerService.changeHeader("Join");
+        this.headerService.changeHeader("Join", true);
         this.rout.navigate([''])
       } else {
         // window.alert(this.errorService.getErrorMessage( data.error));
       }
-    });}
-
+    });
+  }
   }
 }

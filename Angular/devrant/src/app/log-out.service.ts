@@ -26,7 +26,7 @@ export class LogOutService {
         'X-Token': this.auth.myToken
       })
     };
-    return this.http.post(AppConstants.API_ENDPOINT+AppConstants.API_USER_DEACTIVATE, null, httpOptions);
+    return this.http.post<myData>(AppConstants.API_ENDPOINT+AppConstants.API_USER_DEACTIVATE, null, httpOptions);
     
   };
 }

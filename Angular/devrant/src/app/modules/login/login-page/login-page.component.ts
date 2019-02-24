@@ -61,9 +61,11 @@ export class LoginPageComponent implements OnInit {
         this.loaderService.showLoader(false);
         
         if(data.ok){
+          console.log("SUCCESS "+data.ok)
             this.router.navigate(['']);
             this.authService.setLoggedIn(true, data.token);
-            this.headerService.changeHeader("Sing Out");
+            this.headerService.changeHeader("Sing Out", false);
+            this.loginPopupService.login(false);
         } else {
           // window.alert(this.errorService.getErrorMessage( data.error));
         }
